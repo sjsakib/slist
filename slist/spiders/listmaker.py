@@ -47,7 +47,7 @@ class ListmakerSpider(scrapy.Spider):
     def parse_loj(self, response):
         data = {}
         data['id'] = response.meta['id']
-        data['judge'] = 'LOJ'
+        data['judge'] = 'loj'
         if response.status == 200:
             matches = re.findall(r'(\d{4})(,)', response.text)
             lst = [m[0] for m in matches]
@@ -61,7 +61,7 @@ class ListmakerSpider(scrapy.Spider):
     def parse_timus(self, response):
         data = {}
         data['id'] = response.meta['id']
-        data['judge'] = 'TIMUS'
+        data['judge'] = 'timus'
         if response.status == 200:
             lst = response.css('td.accepted a::text').extract()
             data['lst'] = lst
@@ -74,7 +74,7 @@ class ListmakerSpider(scrapy.Spider):
     def parse_uva(self, response):
         data = {}
         data['id'] = response.meta['id']
-        data['judge'] = 'UVA'
+        data['judge'] = 'uva'
         if response.status == 200:
             lst = []
             resp = json.loads(response.text)
@@ -92,12 +92,12 @@ class ListmakerSpider(scrapy.Spider):
     def parse_cf(self, response):
         data = {}
         data['id'] = response.meta['id']
-        data['judge'] = 'CF'
+        data['judge'] = 'cf'
         if response.status == 200:
             lst = set()
             resp = json.loads(response.text)
             for sub in resp['result']:
-                pid = str(sub['problem']['contestId'])+sub['problem']['index']
+                pid = str(sub['problem']['contestId']) + '-' + sub['problem']['index']
                 if sub['verdict'] == 'OK' and pid not in lst:
                     lst.add(pid)
             data['lst'] = list(lst)
