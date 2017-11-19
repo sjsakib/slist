@@ -1,0 +1,5 @@
+build/*
+project.egg-info/*
+data.json
+data.jl
+*.pyc
