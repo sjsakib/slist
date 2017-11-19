@@ -21,6 +21,7 @@ class ListmakerSpider(scrapy.Spider):
                 url += '&q=' + str(random.random())
                 reqloj = scrapy.Request(url, self.parse_loj)
                 reqloj.meta['id'] = user['id']
+                self.logger.info('LightOJ for ' + user['id'])
                 yield reqloj
 
             if 'timus' in user:
@@ -28,6 +29,7 @@ class ListmakerSpider(scrapy.Spider):
                 url += user['timus']
                 reqtimus = scrapy.Request(url, self.parse_timus)
                 reqtimus.meta['id'] = user['id']
+                self.logger.info('Timus for ' + user['id'])
                 yield reqtimus
 
             if 'uva' in user:
@@ -35,6 +37,7 @@ class ListmakerSpider(scrapy.Spider):
                 url += user['uva']
                 requva = scrapy.Request(url, self.parse_uva)
                 requva.meta['id'] = user['id']
+                self.logger.info('UVa for ' + user['id'])
                 yield requva
 
             if 'cf' in user:
@@ -42,6 +45,7 @@ class ListmakerSpider(scrapy.Spider):
                 url += user['cf']
                 reqcf = scrapy.Request(url, self.parse_cf)
                 reqcf.meta['id'] = user['id']
+                self.logger.info('Codeforces for ' + user['id'])
                 yield reqcf
 
     def parse_loj(self, response):
