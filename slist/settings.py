@@ -21,11 +21,13 @@ CF = 'http://codeforces.com/api/user.status?handle='
 
 LOG_LEVEL = "INFO"
 
+POST_URL = "http://psbookprogress.pythonanywhere.com/profile/sakib/"
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'slist (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -70,9 +72,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'slist.pipelines.SlistPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'slist.pipelines.SlistPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
